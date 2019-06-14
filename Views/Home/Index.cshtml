@@ -2,7 +2,18 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="text-center">
+        <table border="0" cellpadding="0" width="100%" id="TestWorkTable">
+            <tr><td>Hours</td><td>Degrees</td></tr>
+            
+               @foreach (KeyValuePair<int, int> keyValue in ViewBag.Result)
+                {
+        <tr>
+            <td>@keyValue.Key</td>
+            <td>@keyValue.Value</td>
+        </tr>
+                }
+            
+        </table>
+        
+    </div>

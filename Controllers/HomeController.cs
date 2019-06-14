@@ -12,6 +12,8 @@ namespace WeatherClock.Controllers
     {
         public IActionResult Index()
         {
+            var repository = new Repository();
+            ViewBag.Result = repository.GetHourlyWeather();
             return View();
         }
 
