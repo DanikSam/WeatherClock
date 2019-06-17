@@ -9,8 +9,12 @@
       if (canvas.getContext) {
         var ctx = canvas.getContext('2d');
 
-        ctx.fillStyle = 'rgb(200, 0, 0)';
-        ctx.fillRect(10, hour * 10, degree * 10, 8);
+          ctx.fillStyle = 'rgb(200, 0, 0)';
+
+          x = 250 + Math.sin(hour * 3.14 / 6) * (100 + 2 * degree)
+          y = 250 - Math.cos(hour * 3.14 / 6) * (100 + 2 * degree)
+
+        ctx.fillRect(x, y, 10, 10);
 
       }
     }
