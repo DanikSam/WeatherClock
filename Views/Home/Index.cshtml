@@ -28,11 +28,32 @@
         ctx.stroke();
       
     }
+
+    function drawLine(x1, y1, x2, y2) {
+      var canvas = document.getElementById('clock');
+      if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+
+          ctx.fillStyle = 'rgb(200, 0, 0)';
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(x2, y2);
+
+      }
+    }
 </script>
 
 <body onload="draw();">
 
     <div class="text-center">
+
+        <circle-progress [percent]="85"
+                         [radius]="100"
+                         [outerStrokeWidth]="16"
+                         [innerStrokeWidth]="8"
+                         [outerStrokeColor]="'#78C000'"
+                         [innerStrokeColor]="'#C7E596'"
+                         [animation]="true"
+                         [animationDuration]="300"></circle-progress>
 
         <canvas id="clock" width="500" height="500"></canvas>
         <script type="text/javascript">drawCircle()</script>
@@ -44,6 +65,7 @@
             <script type="text/javascript">drawPoint(@keyValue.Key, @keyValue.Value)</script>
 
         }
+
 
 
 

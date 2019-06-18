@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WeatherClock
 {
-    public class Repository
+    public class WeatherRepository
     {
         private readonly Dictionary<int, int> _hourlyWeather = new Dictionary<int, int>
         {
