@@ -1,7 +1,13 @@
 ﻿Models/
 Properties/
-Program.cs
 Startup.cs
 WeatherClock.csproj.user
 appsettings.Development.json
 appsettings.json
+
+# vs code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
