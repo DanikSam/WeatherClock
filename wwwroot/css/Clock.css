@@ -4,7 +4,9 @@
     background-size: 88%;
     height: 20em;
     padding-bottom: 31%;
-    position: relative;
+    position: absolute;
+    margin-top: -417px;
+    margin-left: 390px;
     width: 20em;
 }
 

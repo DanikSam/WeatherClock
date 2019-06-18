@@ -14,8 +14,6 @@ namespace WeatherClock.Controllers
         {
             var repository = new WeatherRepository();
             ViewBag.Result = repository.GetHourlyWeather();
-            var newCoordinates = new Coordinate();
-            ViewBag.Coordinates = newCoordinates.GetCoordinates();
             return View();
         }
 
