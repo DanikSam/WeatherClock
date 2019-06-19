@@ -6,6 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="dist\**" />
+    <Content Remove="dist\**" />
+    <EmbeddedResource Remove="dist\**" />
+    <None Remove="dist\**" />
+    <TypeScriptCompile Remove="dist\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\css\Clock.css" />
     <None Include="wwwroot\js\circle-progress.js" />
   </ItemGroup>
@@ -19,11 +27,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="dist\" />
   </ItemGroup>
 
 </Project>
