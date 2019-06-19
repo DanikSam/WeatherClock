@@ -1,7 +1,11 @@
-﻿.clock-container {
-    position:absolute;
-    top: 280px;
-    left: 510px;
+﻿.circle{
+    position: absolute;
+    top: 164px;
+    left: 36%;
+}
+
+.clock-container {
+    position: relative;
 }
 
 .clock {
@@ -10,8 +14,10 @@
     background-size: 88%;
     height: 20em;
     padding-bottom: 31%;
-    position:relative;
+    position: absolute;
     width: 20em;
+    top: 40px;
+    left: 35.4%;
 }
 
 .clock.simple:after {
