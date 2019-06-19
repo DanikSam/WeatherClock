@@ -4,42 +4,31 @@
 
 <link rel="stylesheet" href="~/css/Clock.css" />
 
+
 <script type="text/javascript">
     function drawPoint(hour, degree) {
-      var canvas = document.getElementById('clock');
-      if (canvas.getContext) {
-        var ctx = canvas.getContext('2d');
+        var canvas = document.getElementById('clock');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
 
-          ctx.fillStyle = 'rgb(200, 0, 0)';
+            ctx.fillStyle = 'rgb(200, 0, 0)';
 
-          x = 250 + Math.sin(hour * 3.14 * 2 / 12) * (130 + 2 * degree);
-          y = 250 - Math.cos(hour * 3.14 * 2 / 12) * (130 + 2 * degree);
+            x = 300 + Math.sin(hour * 3.14 * 2 / 12) * (170 + 2 * degree);
+            y = 300 - Math.cos(hour * 3.14 * 2 / 12) * (170 + 2 * degree);
 
-        ctx.fillRect(x, y, 5, 5);
+            ctx.fillRect(x, y, 5, 5);
 
-      }
+        }
     }
 
     function drawCircle() {
-      var canvas = document.getElementById('clock');
-      var ctx = canvas.getContext('2d');
-
-      ctx.beginPath();
-        ctx.arc(250, 250, 130, 0, Math.PI * 2, true); 
-        ctx.stroke();
-      
-    }
-
-    function drawLine(x1, y1, x2, y2) {
-      var canvas = document.getElementById('clock');
-      if (canvas.getContext) {
+        var canvas = document.getElementById('clock');
         var ctx = canvas.getContext('2d');
 
-          ctx.fillStyle = 'rgb(200, 0, 0)';
-          ctx.moveTo(x1, y1);
-          ctx.lineTo(x2, y2);
+        ctx.beginPath();
+        ctx.arc(300, 300, 170, 0, Math.PI * 2, true);
+        ctx.stroke();
 
-      }
     }
 </script>
 
@@ -56,7 +45,10 @@
                          [animation]="true"
                          [animationDuration]="300"></circle-progress>
 
-        <canvas id="clock" width="500" height="500"></canvas>
+        <canvas id="clock" width="600" height="600"></canvas>
+
+
+
 
         <article class="clock">
             <div class="hours-container">
@@ -81,8 +73,6 @@
         }
 
 
-
-
         <table border="0" cellpadding="0" width="100%" id="TestWorkTable">
             <tr><td>Hours</td><td>Degree</td></tr>
 
@@ -97,6 +87,26 @@
             }
 
         </table>
+
+        <div class="newCircle">
+            <canvas width="100" height="100"></canvas>
+            <strong>.75</strong>
+            <br />
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script  src="~/js/circle-progress.js"></script>
+        <script>
+            $('.newCircle').circleProgress({
+                value: 0.75,
+                fill: { gradient: [['#0681c4', .5], ['#4ac5f8', .5]], gradientAngle: Math.PI / 4}
+            }).on('circle-animation-progress', function(event, progress, stepValue) {
+                $(this).find('strong').text(String(stepValue.toFixed(2)).substr(1));
+
+            });
+
+        </script>
 
 
 
