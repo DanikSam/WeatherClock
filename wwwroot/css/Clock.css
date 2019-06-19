@@ -1,6 +1,8 @@
 ﻿.clock-container {
     position: relative;
     text-align: initial;
+    width: 420px;
+    margin: 0 auto;
 }
 
 .circle {
