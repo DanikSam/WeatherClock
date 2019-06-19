@@ -1,10 +1,16 @@
-﻿.circle{
-    position: absolute;
-    top: 164px;
-    left: 36%;
+﻿.clock-container {
+    position: relative;
+    text-align: initial;
 }
 
-.clock-container {
+.circle {
+    position: absolute;
+    top: 25px;
+    z-index: 0;
+    left: 25px;
+}
+
+.dynamic-clock-container {
     position: relative;
 }
 
@@ -17,7 +23,7 @@
     position: absolute;
     width: 20em;
     top: 40px;
-    left: 35.4%;
+    left: 53px;
 }
 
 .clock.simple:after {
