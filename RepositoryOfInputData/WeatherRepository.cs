@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace WeatherClock
             { 2, 12 },
             { 3, 13 },
             { 4, 15 },
-            { 5, 19 },
+           // { 5, 19 },
             { 6, 20 },
             { 7, 25 },
             { 8, 22 },
@@ -23,15 +24,10 @@ namespace WeatherClock
             { 12, 23 },
         };
 
-        public Dictionary<int, int> GetHourlyWeather()
+        public String GetHourlyWeather()
         {
-            /*            var dict = new Dictionary<int, int>();
-                        for ( int i = 1; i < 13; i++ )
-                        {
-                            dict[i] = i + 10;
-                        }
-                        return string.Join(" ", dict);*/
-            return _hourlyWeather;
+            string result = JsonConvert.SerializeObject(_hourlyWeather);
+            return result;
         }
     }
 }

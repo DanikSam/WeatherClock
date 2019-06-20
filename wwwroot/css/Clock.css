@@ -18,7 +18,7 @@
 
 .clock {
     border-radius: 50%;
-    background: #fff url(/assets/images/posts/clocks/ios_clock.svg) no-repeat center;
+    background: #fff;
     background-size: 88%;
     height: 20em;
     padding-bottom: 31%;

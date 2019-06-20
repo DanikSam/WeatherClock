@@ -8,6 +8,11 @@
 
 
 <script type="text/javascript">
+    function main() {
+        drawClock();
+        drawArc();
+    }
+
     function drawClock() {
 
         var canvas = document.getElementById('clock');
@@ -31,25 +36,16 @@
 
         ctx.lineWidth = 5;
 
-        var dict = {
-            1: 12,
-            2: 12,
-            3: 13,
-            4: 15,
-            5: 19,
-            6: 20,
-            7: 25,
-            8: 22,
-            9: 23,
-            10: 25,
-            11: 22,
-            12: 23,
-        };
+        var serialyzed = '@Html.Raw(ViewBag.Result)';
+
+        var dict =  JSON.parse(serialyzed);
 
         for (var key in dict) {
 
-            if (0 <= key <= 12) {
+            if (0 <= parseInt(key, 10) <= 12) {
+
                 ctx.beginPath();
+
                 var color = 'rgb(255, ' + (255 - dict[key] * 255 / 30) + ', 0)';
                 ctx.strokeStyle = color;
                 var start = - Math.PI / 2 + parseInt(key, 10) * Math.PI / 6;
@@ -86,35 +82,13 @@
                     </div>
                 </article>
 
-
-
-
             </div>
 
             <canvas id="clock" width="370" height="370" class=circle></canvas>
 
         </div>
 
-        <script type="text/javascript">drawClock()</script>
-        <script type="text/javascript">drawArc()</script>
-
-
-
-
-        <table border="0" cellpadding="0" width="100%" id="TestWorkTable">
-            <tr><td>Hours</td><td>Degree</td></tr>
-
-            @foreach (KeyValuePair<int, int> keyValue in ViewBag.Result)
-            {
-
-                <tr>
-                    <td>@keyValue.Key</td>
-                    <td>@keyValue.Value</td>
-                </tr>
-
-            }
-
-        </table>
+        <script type="text/javascript">main()</script>
 
     </div>
 

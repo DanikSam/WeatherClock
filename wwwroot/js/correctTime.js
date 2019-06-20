@@ -36,4 +36,43 @@ function initLocalClocks() {
             }
         }
     }
+
+    /*
+    * Установить таймаут для первого движения минутной стрелки (меньше 1 минуты), после чего поворачивать ее каждую минуту
+    */
+    function setUpMinuteHands() {
+        // Вычислить, сколько секунд прошло с начала этой минуты
+        var containers = document.querySelectorAll('.minutes-container');
+        var secondAngle = containers[0].getAttribute("data-second-angle");
+        if (secondAngle > 0) {
+            // Установить таймаут до конца текущей минуты, чтобы передвинуть стрелку
+            var delay = (((360 - secondAngle) / 6) + 0.1) * 1000;
+            setTimeout(function () {
+                moveMinuteHands(containers);
+            }, delay);
+        }
+    }
+
+    /*
+     * Выполнить первый поворот минутной стрелки
+     */
+    function moveMinuteHands(containers) {
+        for (var i = 0; i < containers.length; i++) {
+            containers[i].style.webkitTransform = 'rotateZ(6deg)';
+            containers[i].style.transform = 'rotateZ(6deg)';
+        }
+        // После этого продолжить с интервалом в 60 секунд
+        setInterval(function () {
+            for (var i = 0; i < containers.length; i++) {
+                if (containers[i].angle === undefined) {
+                    containers[i].angle = 12;
+                } else {
+                    containers[i].angle += 6;
+                }
+                containers[i].style.webkitTransform = 'rotateZ(' + containers[i].angle + 'deg)';
+                containers[i].style.transform = 'rotateZ(' + containers[i].angle + 'deg)';
+            }
+        }, 60000);
+    }
 }
+
