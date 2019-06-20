@@ -70,9 +70,10 @@
         <script src="~/js/circle-progress.js"></script>
         <script>
             $('.newCircle').circleProgress({
-                value: 0.75,
+                value: 1.0,
                 size: 420.0,
-                fill: { gradient: [['#0681c4', .5], ['#4ac5f8', .5]], gradientAngle: Math.PI / 4 }
+                startAngle: -Math.PI,
+                fill: { gradient: ['#00a5df', '#3e147b', '#e20079', '#df132c', '#f3ef15', '#009847'], gradientAngle: Math.PI / 2 }
             }).on('circle-animation-progress', function (event, progress, stepValue) {
                 $(this).find('strong').text(String(stepValue.toFixed(2)).substr(1));
 
