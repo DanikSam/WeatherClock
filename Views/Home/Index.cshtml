@@ -50,7 +50,7 @@
 
             if (0 <= key <= 12) {
                 ctx.beginPath();
-                var color = 'rgb(' + (dict[key] * 8.5) + ', 0, 0)';
+                var color = 'rgb(255, ' + (255 - dict[key] * 255 / 30) + ', 0)';
                 ctx.strokeStyle = color;
                 var start = - Math.PI / 2 + parseInt(key, 10) * Math.PI / 6;
                 var end = - Math.PI / 2 + (parseInt(key, 10) + 1) * Math.PI / 6;
