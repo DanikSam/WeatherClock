@@ -6,11 +6,11 @@
 
 
 <script type="text/javascript">
-    function drawCircle() {
+    function drawClock() {
         var canvas = document.getElementById('clock');
         var ctx = canvas.getContext('2d');
         ctx.beginPath();
-        ctx.arc(185, 185, 180, 0, Math.PI * 2, true);
+        ctx.arc(185, 185, 180, 0, Math.PI * 2);
         ctx.stroke();
         ctx.fillStyle = 'rgb(200, 0, 0)';
         for (i = 1; i <= 12; i++) {
@@ -19,6 +19,53 @@
             ctx.fillRect(x, y, 4, 4);
         }
     }
+
+    function drawArc() {
+
+        var canvas = document.getElementById('clock');
+        var ctx = canvas.getContext('2d');
+        ctx.beginPath();
+
+        
+        ctx.lineWidth = 5;
+
+        var dict = {
+            1: 12,
+            2: 12,
+            3: 13,
+            6: 20,
+            7: 25,
+            9: 23,
+            10: 25,
+            11: 22,
+        };
+
+        for (var key in dict) {
+
+            if (0 <= key <= 12) {
+                ctx.beginPath();
+                var color = '#' + (dict[key] * dict[key] / 2) + '0000';
+                ctx.strokeStyle = color;
+                var start = - Math.PI / 2 + parseInt(key, 10) * Math.PI / 6;
+                var end = - Math.PI / 2 + (parseInt(key, 10) + 1) * Math.PI / 6;
+                ctx.arc(185, 185, 183, start, end);
+
+                ctx.stroke();
+
+            }
+            
+        }
+                
+
+        ctx.stroke();
+        ctx.closePath();
+    }
+
+
+
+
+
+
 </script>
 
 <body onload="draw();">
@@ -43,8 +90,10 @@
 
             <canvas id="clock" width="370" height="370" class=circle></canvas>
 
-            <div class="newCircle"></div>
         </div>
+
+        <script type="text/javascript">drawClock()</script>
+        <script type="text/javascript">drawArc()</script>
 
 
 
@@ -59,6 +108,8 @@
                     <td>@keyValue.Value</td>
                 </tr>
 
+                <script type="text/javascript">drawCircle()</script>
+
             }
 
         </table>
@@ -66,22 +117,6 @@
 
 
 
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script src="~/js/circle-progress.js"></script>
-        <script>
-            $('.newCircle').circleProgress({
-                value: 1.0,
-                size: 420.0,
-                startAngle: -Math.PI,
-                fill: { gradient: ['#00a5df', '#3e147b', '#e20079', '#df132c', '#f3ef15', '#009847'], gradientAngle: Math.PI / 2 }
-            }).on('circle-animation-progress', function (event, progress, stepValue) {
-                $(this).find('strong').text(String(stepValue.toFixed(2)).substr(1));
-
-            });
-
-        </script>
-
-        <script type="text/javascript">drawCircle()</script>
 
 
 
