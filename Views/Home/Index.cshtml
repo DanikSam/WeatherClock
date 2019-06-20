@@ -4,15 +4,18 @@
 
 <link rel="stylesheet" href="~/css/Clock.css" />
 
+<script type="text/javascript" src="~/js/correctTime.js">initLocalClocks()</script>
+
 
 <script type="text/javascript">
     function drawClock() {
+
         var canvas = document.getElementById('clock');
         var ctx = canvas.getContext('2d');
         ctx.beginPath();
         ctx.arc(185, 185, 180, 0, Math.PI * 2);
         ctx.stroke();
-        ctx.fillStyle = 'rgb(200, 0, 0)';
+        ctx.fillStyle = 'rgb(0, 0, 139)';
         for (i = 1; i <= 12; i++) {
             x = 183 + Math.sin(i * 3.14 * 2 / 12) * 178;
             y = 183 - Math.cos(i * 3.14 * 2 / 12) * 178;
@@ -26,25 +29,28 @@
         var ctx = canvas.getContext('2d');
         ctx.beginPath();
 
-        
         ctx.lineWidth = 5;
 
         var dict = {
             1: 12,
             2: 12,
             3: 13,
+            4: 15,
+            5: 19,
             6: 20,
             7: 25,
+            8: 22,
             9: 23,
             10: 25,
             11: 22,
+            12: 23,
         };
 
         for (var key in dict) {
 
             if (0 <= key <= 12) {
                 ctx.beginPath();
-                var color = '#' + (dict[key] * dict[key] / 2) + '0000';
+                var color = 'rgb(' + (dict[key] * 8.5) + ', 0, 0)';
                 ctx.strokeStyle = color;
                 var start = - Math.PI / 2 + parseInt(key, 10) * Math.PI / 6;
                 var end = - Math.PI / 2 + (parseInt(key, 10) + 1) * Math.PI / 6;
@@ -53,18 +59,11 @@
                 ctx.stroke();
 
             }
-            
-        }
-                
 
-        ctx.stroke();
+        }
+
         ctx.closePath();
     }
-
-
-
-
-
 
 </script>
 
@@ -86,6 +85,10 @@
                         <div class="seconds"></div>
                     </div>
                 </article>
+
+
+
+
             </div>
 
             <canvas id="clock" width="370" height="370" class=circle></canvas>
@@ -108,17 +111,9 @@
                     <td>@keyValue.Value</td>
                 </tr>
 
-                <script type="text/javascript">drawCircle()</script>
-
             }
 
         </table>
-
-
-
-
-
-
 
     </div>
 
