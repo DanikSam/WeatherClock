@@ -12,6 +12,7 @@
     function main() {
         drawClock();
         drawArc();
+        addDegreeInHover();
     }
 
     function drawClock() {
@@ -19,13 +20,13 @@
         var canvas = document.getElementById('clock');
         var ctx = canvas.getContext('2d');
         ctx.beginPath();
-        ctx.arc(185, 185, 180, 0, Math.PI * 2);
+        ctx.arc(200, 200, 180, 0, Math.PI * 2);
         ctx.stroke();
         ctx.fillStyle = 'rgb(0, 0, 139)';
         for (i = 1; i <= 12; i++) {
-            x = 183 + Math.sin(i * 3.14 * 2 / 12) * 178;
-            y = 183 - Math.cos(i * 3.14 * 2 / 12) * 178;
-            ctx.fillRect(x, y, 4, 4);
+            x = 198 + Math.sin(i * 3.14 * 2 / 12) * 178;
+            y = 198 - Math.cos(i * 3.14 * 2 / 12) * 178;
+            ctx.fillRect(x, y, 5, 5);
         }
     }
 
@@ -34,8 +35,7 @@
         var canvas = document.getElementById('clock');
         var ctx = canvas.getContext('2d');
         ctx.beginPath();
-
-        ctx.lineWidth = 5;
+        ctx.lineWidth = 7;
 
         var serialyzed = '@Html.Raw(ViewBag.Result)';
 
@@ -46,12 +46,12 @@
             if (0 <= parseInt(key, 10) <= 12) {
 
                 ctx.beginPath();
-
+        
                 var color = 'rgb(255, ' + (255 - dict[key] * 255 / 30) + ', 0)';
                 ctx.strokeStyle = color;
                 var start = - Math.PI / 2 + parseInt(key, 10) * Math.PI / 6;
                 var end = - Math.PI / 2 + (parseInt(key, 10) + 1) * Math.PI / 6;
-                ctx.arc(185, 185, 183, start, end);
+                ctx.arc(200, 200, 183, start, end);
 
                 ctx.stroke();
 
@@ -60,6 +60,23 @@
         }
 
         ctx.closePath();
+    }
+
+    function addDegreeInHover() {
+
+        var serialyzed = '@Html.Raw(ViewBag.Result)';
+
+        var dict =  JSON.parse(serialyzed);
+
+        for (var key in dict) {
+
+            if (0 <= parseInt(key, 10) <= 12) {
+
+                document.getElementById(key).innerHTML = dict[key];        
+                
+            }
+
+        }
     }
 
 </script>
@@ -85,44 +102,44 @@
 
             </div>
 
-            <canvas id="clock" width="370" height="370" class=circle></canvas>
+            <canvas id="clock" width="400" height="400" class=circle></canvas>
 
             <div class="degree-container">
                 <div class="degree-text oneHour">
-                    <div class="hover-text">One</div>
+                    <div id="1" class="hover-text">Undefined</div>
                 </div>
                 <div class="degree-text twoHour">
-                    <div class="hover-text">Two</div>
+                    <div id="2" class="hover-text">Undefined</div>
                 </div>
                 <div class="degree-text threeHour">
-                    <div class="hover-text">Three</div>
+                    <div id="3" class="hover-text">Undefined</div>
                 </div>
                 <div class="degree-text fourHour">
-                    <div class="hover-text">Four</div>
+                    <div id="4" class="hover-text">Undefined</div>
                 </div>
                 <div class="degree-text fiveHour">
-                    <div class="hover-text">Five</div>
+                    <div id="5" class="hover-text">Undefined</div>
                 </div>
                 <div class="degree-text sixHour">
-                    <div class="hover-text">Six</div>
+                    <div id="6" class="hover-text">Undefined</div>
                 </div>
                 <div class="degree-text sevenHour">
-                    <div class="hover-text">Seven</div>
+                    <div id="7" class="hover-text">Undefined</div>
                 </div>
                 <div class="degree-text eightHour">
-                    <div class="hover-text">Eight</div>
+                    <div id="8" class="hover-text">Undefined</div>
                 </div>
                 <div class="degree-text nineHour">
-                    <div class="hover-text">Nine</div>
+                    <div id="9" class="hover-text">Undefined</div>
                 </div>
                 <div class="degree-text tenHour">
-                    <div class="hover-text">Ten</div>
+                    <div id="10" class="hover-text">Undefined</div>
                 </div>
                 <div class="degree-text elevenHour">
-                    <div class="hover-text">Eleven</div>
+                    <div id="11" class="hover-text">Undefined</div>
                 </div>
                 <div class="degree-text twelveHour">
-                    <div class="hover-text">Twelve</div>
+                    <div id="12" class="hover-text">Undefined</div>
                 </div>
             </div>
 

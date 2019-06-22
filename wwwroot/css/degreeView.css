@@ -17,15 +17,16 @@
     z-index: 4;
 }
 
-    .degree-text:hover .hover-text {
-        visibility: visible;
-    }
+.degree-text:hover .hover-text {
+    visibility: visible;
+}
 
 .hover-text {
-    background-color: #00ff21;
     width: inherit;
     height: inherit;
     visibility: hidden;
+    font: 20px/73px sans-serif;
+    color: #0026ff;
 }
 
 
@@ -41,66 +42,65 @@
 .tenHour,
 .elevenHour,
 .twelveHour {
-    visibility: visible;
     position: absolute;
 }
 
 .oneHour {
-    top: 35px;
-    left: 299px;
+    top: 50px;
+    left: 315px;
 }
 
 .twoHour {
-    top: 123px;
-    left: 340px;
+    top: 138px;
+    left: 350px;
 }
 
 .threeHour {
-    top: 211px;
-    left: 340px;
+    top: 226px;
+    left: 350px;
 }
 
 .fourHour {
-    top: 299px;
-    left: 301px;
+    top: 314px;
+    left: 315px;
 }
 
 .fiveHour {
-    top: 331px;
-    left: 213px;
+    top: 340px;
+    left: 227px;
 }
 
 .sixHour {
-    top: 331px;
-    left: 123px;
+    top: 340px;
+    left: 138px;
 }
 
 .sevenHour {
-    top: 300px;
-    left: 34px;
+    top: 314px;
+    left: 50px;
 }
 
 .eightHour {
-    top: 211px;
+    top: 226px;
     left: 0;
 }
 
 .nineHour {
-    top: 123px;
+    top: 138px;
     left: 0;
 }
 
 .tenHour {
-    top: 35px;
-    left: 34px;
+    top: 50px;
+    left: 50px;
 }
 
 .elevenHour {
     top: 0;
-    left: 122px;
+    left: 138px;
 }
 
 .twelveHour {
     top: 0;
-    left: 211px;
+    left: 227px;
 }
