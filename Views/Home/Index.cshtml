@@ -6,85 +6,20 @@
 <link rel="stylesheet" href="~/css/degreeView.css" />
 
 <script type="text/javascript" src="~/js/correctTime.js">initLocalClocks()</script>
+<script src="~/js/drawClock.js"></script>
 
 
 <script type="text/javascript">
     function main() {
+        var canvas = document.getElementById('clock');
         var RADIUS = 180;
-        var X0 = 200;
-        var Y0 = 200;
-        drawClock(X0, Y0, RADIUS);
-        getAndDrawHourlyWeather(X0, Y0, RADIUS + 3);
-        addDegreeInHover();
+        var X0 = canvas.width / 2;
+        var Y0 = canvas.height / 2;
+        var hourlyWeather = '@Html.Raw(ViewBag.Result)';
+        drawClock(canvas, X0, Y0, RADIUS);
+        getAndDrawHourlyWeather(canvas, X0, Y0, RADIUS + 3, hourlyWeather);
+        addDegreeInHover(hourlyWeather);
     }
-
-    function drawClock(x, y, r) {
-
-        var canvas = document.getElementById('clock');
-        var ctx = canvas.getContext('2d');
-        var delta = 2;
-        var pointRadius = 5;
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.fillStyle = 'rgb(0, 0, 139)';
-        for (i = 1; i <= 12; i++) {
-            x1 = x - delta + Math.sin(i * 3.14 * 2 / 12) * (r - delta);
-            y1 = y - delta - Math.cos(i * 3.14 * 2 / 12) * (r - delta);
-            ctx.fillRect(x1, y1, pointRadius, pointRadius);
-        }
-    }
-
-    function getAndDrawHourlyWeather(xtemp, ytemp, rtemp) {
-        var serialyzed = '@Html.Raw(ViewBag.Result)';
-        var dict = JSON.parse(serialyzed);
-        drawCircle(dict, xtemp, ytemp, rtemp);
-    }
-
-    function drawCircle(dictData, x, y, r) {
-
-        var dict = dictData;
-        
-
-        for (var key in dict) {
-
-            if (0 <= parseInt(key, 10) <= 12) {
-                    
-                var color = 'rgb(255, ' + (255 - dict[key] * 255 / 30) + ', 0)';
-                
-                var start = - Math.PI / 2 + parseInt(key, 10) * Math.PI / 6;
-                var end = - Math.PI / 2 + (parseInt(key, 10) + 1) * Math.PI / 6;
-                drawArc(x, y, r, color, 7, start, end)
-
-            }
-        }
-
-    }
-
-    function drawArc(x, y, r, color, width, start, end) {
-
-        var canvas = document.getElementById('clock');
-        var ctx = canvas.getContext('2d');
-        ctx.strokeStyle = color;
-        ctx.lineWidth = width;
-        ctx.beginPath();
-        ctx.arc(x, y, r, start, end);
-        ctx.stroke();
-        ctx.closePath();
-    }
-
-    function addDegreeInHover() {
-
-        var serialyzed = '@Html.Raw(ViewBag.Result)';
-        var dict =  JSON.parse(serialyzed);
-
-        for (var key in dict) {
-            if (0 <= parseInt(key, 10) <= 12) {
-                document.getElementById(key).innerHTML = dict[key]
-            }
-        }
-    }
-
 </script>
 
 <body onload="initLocalClocks();">
