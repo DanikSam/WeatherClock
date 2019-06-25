@@ -38,15 +38,10 @@
     function getAndDrawHourlyWeather(xtemp, ytemp, rtemp) {
         var serialyzed = '@Html.Raw(ViewBag.Result)';
         var dict = JSON.parse(serialyzed);
-        drawArc(dict, xtemp, ytemp, rtemp);
+        drawCircle(dict, xtemp, ytemp, rtemp);
     }
 
-    function drawArc(dictData, x, y, r) {
-
-        var canvas = document.getElementById('clock');
-        var ctx = canvas.getContext('2d');
-        ctx.beginPath();
-        ctx.lineWidth = 7;
+    function drawCircle(dictData, x, y, r) {
 
         var dict = dictData;
         
@@ -55,19 +50,26 @@
 
             if (0 <= parseInt(key, 10) <= 12) {
                     
-                ctx.beginPath();
-        
                 var color = 'rgb(255, ' + (255 - dict[key] * 255 / 30) + ', 0)';
-                ctx.strokeStyle = color;
+                
                 var start = - Math.PI / 2 + parseInt(key, 10) * Math.PI / 6;
                 var end = - Math.PI / 2 + (parseInt(key, 10) + 1) * Math.PI / 6;
-                ctx.arc(x, y, r, start, end);
-
-                ctx.stroke();
+                drawArc(x, y, r, color, 7, start, end)
 
             }
         }
 
+    }
+
+    function drawArc(x, y, r, color, width, start, end) {
+
+        var canvas = document.getElementById('clock');
+        var ctx = canvas.getContext('2d');
+        ctx.strokeStyle = color;
+        ctx.lineWidth = width;
+        ctx.beginPath();
+        ctx.arc(x, y, r, start, end);
+        ctx.stroke();
         ctx.closePath();
     }
 
