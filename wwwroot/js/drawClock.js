@@ -13,38 +13,39 @@
     }
 }
 
+function createColor(value) {
+    return ('rgb(255, ' + (255 - value * 255 / 30) + ', 0)');
+}
+
 function getAndDrawHourlyWeather(canvas, x, y, r, serialized) {
     var hourlyWeather = JSON.parse(serialized);
+    var _lineWidth = 7;
+    var section = 30;
     for (var key in hourlyWeather) {
         if (0 <= key && key <= 12) {
             var color = createColor(hourlyWeather[key]);
             var start = - Math.PI / 2 + parseInt(key, 10) * Math.PI / 6;
-            var end = - Math.PI / 2 + (parseInt(key, 10) + 1) * Math.PI / 6;
-            drawArc(canvas, x, y, r, color, 7, start, end)
+            drawArc(canvas, x, y, r, color, _lineWidth, start, section);
         }
     }
 }
 
-function createColor(value) {
-    return ('rgb(255, ' + (255 - value * 255 / 30) + ', 0)')
-}
-
-
-function drawArc(canvas, x, y, r, color, width, start, end) {
+function drawArc(canvas, x, y, r, color, width, start, section) {
     var ctx = canvas.getContext('2d');
     ctx.strokeStyle = color;
     ctx.lineWidth = width;
+    var end = start + section * Math.PI / 180;
     ctx.beginPath();
     ctx.arc(x, y, r, start, end);
     ctx.stroke();
-    ctx.closePath()
+    ctx.closePath();
 }
 
 function addDegreeInHover(serialized) {
     var hourlyWeather = JSON.parse(serialized);
     for (var key in hourlyWeather) {
         if (0 <= parseInt(key, 10) <= 12) {
-            document.getElementById(key).innerHTML = hourlyWeather[key]
+            document.getElementById(key).innerHTML = hourlyWeather[key];
         }
     }
 }
