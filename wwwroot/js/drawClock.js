@@ -1,14 +1,14 @@
 ﻿function drawClock(canvas, x, y, r) {
     var ctx = canvas.getContext('2d');
-    var delta = 2;
-    var pointRadius = 5;
+    var pointRadius = 6;
+    var displacement = pointRadius / 2;  /* point doesn't overlap circle */
     ctx.beginPath();
     ctx.arc(x, y, r, 0, Math.PI * 2);
     ctx.stroke();
     ctx.fillStyle = 'rgb(0, 0, 139)';
     for (i = 1; i <= 12; i++) {
-        x1 = x - delta + Math.sin(i * Math.PI * 2 / 12) * (r - delta);
-        y1 = y - delta - Math.cos(i * Math.PI * 2 / 12) * (r - delta);
+        x1 = x - displacement + Math.sin(i * Math.PI * 2 / 12) * (r - displacement);
+        y1 = y - displacement - Math.cos(i * Math.PI * 2 / 12) * (r - displacement);
         ctx.fillRect(x1, y1, pointRadius, pointRadius);
     }
 }
@@ -20,7 +20,7 @@ function createColor(value) {
 function getAndDrawHourlyWeather(canvas, x, y, r, serialized) {
     var hourlyWeather = JSON.parse(serialized);
     var _lineWidth = 7;
-    var section = 30;
+    var section = 30;  /* angle */
     for (var key in hourlyWeather) {
         if (0 <= key && key <= 12) {
             var color = createColor(hourlyWeather[key]);
