@@ -10,53 +10,62 @@
 
 <script type="text/javascript">
     function main() {
-        drawClock();
-        drawArc();
+        var RADIUS = 180;
+        var X0 = 200;
+        var Y0 = 200;
+        drawClock(X0, Y0, RADIUS);
+        getAndDrawHourlyWeather(X0, Y0, RADIUS + 3);
         addDegreeInHover();
     }
 
-    function drawClock() {
+    function drawClock(x, y, r) {
 
         var canvas = document.getElementById('clock');
         var ctx = canvas.getContext('2d');
+        var delta = 2;
+        var pointRadius = 5;
         ctx.beginPath();
-        ctx.arc(200, 200, 180, 0, Math.PI * 2);
+        ctx.arc(x, y, r, 0, Math.PI * 2);
         ctx.stroke();
         ctx.fillStyle = 'rgb(0, 0, 139)';
         for (i = 1; i <= 12; i++) {
-            x = 198 + Math.sin(i * 3.14 * 2 / 12) * 178;
-            y = 198 - Math.cos(i * 3.14 * 2 / 12) * 178;
-            ctx.fillRect(x, y, 5, 5);
+            x1 = x - delta + Math.sin(i * 3.14 * 2 / 12) * (r - delta);
+            y1 = y - delta - Math.cos(i * 3.14 * 2 / 12) * (r - delta);
+            ctx.fillRect(x1, y1, pointRadius, pointRadius);
         }
     }
 
-    function drawArc() {
+    function getAndDrawHourlyWeather(xtemp, ytemp, rtemp) {
+        var serialyzed = '@Html.Raw(ViewBag.Result)';
+        var dict = JSON.parse(serialyzed);
+        drawArc(dict, xtemp, ytemp, rtemp);
+    }
+
+    function drawArc(dictData, x, y, r) {
 
         var canvas = document.getElementById('clock');
         var ctx = canvas.getContext('2d');
         ctx.beginPath();
         ctx.lineWidth = 7;
 
-        var serialyzed = '@Html.Raw(ViewBag.Result)';
-
-        var dict =  JSON.parse(serialyzed);
+        var dict = dictData;
+        
 
         for (var key in dict) {
 
             if (0 <= parseInt(key, 10) <= 12) {
-
+                    
                 ctx.beginPath();
         
                 var color = 'rgb(255, ' + (255 - dict[key] * 255 / 30) + ', 0)';
                 ctx.strokeStyle = color;
                 var start = - Math.PI / 2 + parseInt(key, 10) * Math.PI / 6;
                 var end = - Math.PI / 2 + (parseInt(key, 10) + 1) * Math.PI / 6;
-                ctx.arc(200, 200, 183, start, end);
+                ctx.arc(x, y, r, start, end);
 
                 ctx.stroke();
 
             }
-
         }
 
         ctx.closePath();
@@ -65,17 +74,12 @@
     function addDegreeInHover() {
 
         var serialyzed = '@Html.Raw(ViewBag.Result)';
-
         var dict =  JSON.parse(serialyzed);
 
         for (var key in dict) {
-
             if (0 <= parseInt(key, 10) <= 12) {
-
-                document.getElementById(key).innerHTML = dict[key];        
-                
+                document.getElementById(key).innerHTML = dict[key]
             }
-
         }
     }
 
