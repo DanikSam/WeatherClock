@@ -1,0 +1,152 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link rel="stylesheet" href="~/css/Clock.css" />
+<link rel="stylesheet" href="~/css/degreeView.css" />
+
+<script type="text/javascript" src="~/js/correctTime.js">initLocalClocks()</script>
+
+
+<script type="text/javascript">
+    function main() {
+        drawClock();
+        drawArc();
+        addDegreeInHover();
+    }
+
+    function drawClock() {
+
+        var canvas = document.getElementById('clock');
+        var ctx = canvas.getContext('2d');
+        ctx.beginPath();
+        ctx.arc(200, 200, 180, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.fillStyle = 'rgb(0, 0, 139)';
+        for (i = 1; i <= 12; i++) {
+            x = 198 + Math.sin(i * 3.14 * 2 / 12) * 178;
+            y = 198 - Math.cos(i * 3.14 * 2 / 12) * 178;
+            ctx.fillRect(x, y, 5, 5);
+        }
+    }
+
+    function drawArc() {
+
+        var canvas = document.getElementById('clock');
+        var ctx = canvas.getContext('2d');
+        ctx.beginPath();
+        ctx.lineWidth = 7;
+
+        var serialyzed = '@Html.Raw(ViewBag.Result)';
+
+        var dict =  JSON.parse(serialyzed);
+
+        for (var key in dict) {
+
+            if (0 <= parseInt(key, 10) <= 12) {
+
+                ctx.beginPath();
+
+                var color = 'rgb(255, ' + (255 - dict[key] * 255 / 30) + ', 0)';
+                ctx.strokeStyle = color;
+                var start = - Math.PI / 2 + parseInt(key, 10) * Math.PI / 6;
+                var end = - Math.PI / 2 + (parseInt(key, 10) + 1) * Math.PI / 6;
+                ctx.arc(200, 200, 183, start, end);
+
+                ctx.stroke();
+
+            }
+
+        }
+
+        ctx.closePath();
+    }
+
+    function addDegreeInHover() {
+
+        var serialyzed = '@Html.Raw(ViewBag.Result)';
+
+        var dict =  JSON.parse(serialyzed);
+
+        for (var key in dict) {
+
+            if (0 <= parseInt(key, 10) <= 12) {
+
+                document.getElementById(key).innerHTML = dict[key];
+
+            }
+
+        }
+    }
+
+</script>
+
+<body onload="initLocalClocks();">
+
+    <div class="text-center">
+
+        <div class="clock-container">
+
+            <div class="dynamic-clock-container">
+                <article class="clock">
+                    <div class="hours-container">
+                        <div class="hours"></div>
+                    </div>
+                    <div class="minutes-container">
+                        <div class="minutes"></div>
+                    </div>
+                    <div class="seconds-container">
+                        <div class="seconds"></div>
+                    </div>
+                </article>
+
+            </div>
+
+            <canvas id="clock" width="400" height="400" class=circle></canvas>
+
+            <div class="degree-container">
+                <div class="degree-text oneHour">
+                    <div id="1" class="hover-text">Undefined</div>
+                </div>
+                <div class="degree-text twoHour">
+                    <div id="2" class="hover-text">Undefined</div>
+                </div>
+                <div class="degree-text threeHour">
+                    <div id="3" class="hover-text">Undefined</div>
+                </div>
+                <div class="degree-text fourHour">
+                    <div id="4" class="hover-text">Undefined</div>
+                </div>
+                <div class="degree-text fiveHour">
+                    <div id="5" class="hover-text">Undefined</div>
+                </div>
+                <div class="degree-text sixHour">
+                    <div id="6" class="hover-text">Undefined</div>
+                </div>
+                <div class="degree-text sevenHour">
+                    <div id="7" class="hover-text">Undefined</div>
+                </div>
+                <div class="degree-text eightHour">
+                    <div id="8" class="hover-text">Undefined</div>
+                </div>
+                <div class="degree-text nineHour">
+                    <div id="9" class="hover-text">Undefined</div>
+                </div>
+                <div class="degree-text tenHour">
+                    <div id="10" class="hover-text">Undefined</div>
+                </div>
+                <div class="degree-text elevenHour">
+                    <div id="11" class="hover-text">Undefined</div>
+                </div>
+                <div class="degree-text twelveHour">
+                    <div id="12" class="hover-text">Undefined</div>
+                </div>
+            </div>
+
+        </div>
+
+        <script type="text/javascript">main()</script>
+
+    </div>
+
+</body>

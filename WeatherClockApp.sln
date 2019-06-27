@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherClockApp", "WeatherClockApp\WeatherClockApp.csproj", "{F56F537B-E0B0-4535-A0A8-B4574BA1223E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{BB2648EE-BA49-4588-9143-A2147CC21639}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9498C111-3BC2-4938-A28B-564263333EC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventCalendarTest", "Tests\EventCalendarTest\EventCalendarTest.csproj", "{C68A0E81-B852-48E3-938F-2BB1B56B6FB9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F56F537B-E0B0-4535-A0A8-B4574BA1223E} = {F56F537B-E0B0-4535-A0A8-B4574BA1223E}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F56F537B-E0B0-4535-A0A8-B4574BA1223E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F56F537B-E0B0-4535-A0A8-B4574BA1223E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F56F537B-E0B0-4535-A0A8-B4574BA1223E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F56F537B-E0B0-4535-A0A8-B4574BA1223E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C68A0E81-B852-48E3-938F-2BB1B56B6FB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C68A0E81-B852-48E3-938F-2BB1B56B6FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C68A0E81-B852-48E3-938F-2BB1B56B6FB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C68A0E81-B852-48E3-938F-2BB1B56B6FB9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F56F537B-E0B0-4535-A0A8-B4574BA1223E} = {BB2648EE-BA49-4588-9143-A2147CC21639}
+		{C68A0E81-B852-48E3-938F-2BB1B56B6FB9} = {9498C111-3BC2-4938-A28B-564263333EC4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17063887-9604-4973-8D16-ABC48B39D86C}
+	EndGlobalSection
+EndGlobal

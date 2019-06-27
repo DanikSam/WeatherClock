@@ -1,0 +1,106 @@
+﻿.degree-container {
+    position: absolute;
+    display: block;
+    z-index: 3;
+}
+
+.degree-text {
+    line-height: 86px;
+    height: 86px;
+    width: 86px;
+    color: #fff;
+    text-align: center;
+    vertical-align: central;
+    border-radius: 6px;
+    display: inline-block;
+    position: absolute;
+    z-index: 4;
+}
+
+.degree-text:hover .hover-text {
+    visibility: visible;
+}
+
+.hover-text {
+    width: inherit;
+    height: inherit;
+    visibility: hidden;
+    font: 20px/73px sans-serif;
+    color: #0026ff;
+}
+
+
+.oneHour,
+.twoHour,
+.threeHour,
+.fourHour,
+.fiveHour,
+.sixHour,
+.sevenHour,
+.eightHour,
+.nineHour,
+.tenHour,
+.elevenHour,
+.twelveHour {
+    position: absolute;
+}
+
+.oneHour {
+    top: 50px;
+    left: 315px;
+}
+
+.twoHour {
+    top: 138px;
+    left: 350px;
+}
+
+.threeHour {
+    top: 226px;
+    left: 350px;
+}
+
+.fourHour {
+    top: 314px;
+    left: 315px;
+}
+
+.fiveHour {
+    top: 340px;
+    left: 227px;
+}
+
+.sixHour {
+    top: 340px;
+    left: 138px;
+}
+
+.sevenHour {
+    top: 314px;
+    left: 50px;
+}
+
+.eightHour {
+    top: 226px;
+    left: 0;
+}
+
+.nineHour {
+    top: 138px;
+    left: 0;
+}
+
+.tenHour {
+    top: 50px;
+    left: 50px;
+}
+
+.elevenHour {
+    top: 0;
+    left: 138px;
+}
+
+.twelveHour {
+    top: 0;
+    left: 227px;
+}
