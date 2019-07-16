@@ -6,79 +6,20 @@
 <link rel="stylesheet" href="~/css/degreeView.css" />
 
 <script type="text/javascript" src="~/js/correctTime.js">initLocalClocks()</script>
+<script src="~/js/drawClock.js"></script>
 
 
 <script type="text/javascript">
     function main() {
-        drawClock();
-        drawArc();
-        addDegreeInHover();
-    }
-
-    function drawClock() {
-
         var canvas = document.getElementById('clock');
-        var ctx = canvas.getContext('2d');
-        ctx.beginPath();
-        ctx.arc(200, 200, 180, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.fillStyle = 'rgb(0, 0, 139)';
-        for (i = 1; i <= 12; i++) {
-            x = 198 + Math.sin(i * 3.14 * 2 / 12) * 178;
-            y = 198 - Math.cos(i * 3.14 * 2 / 12) * 178;
-            ctx.fillRect(x, y, 5, 5);
-        }
+        var RADIUS = 180;
+        var X0 = canvas.width / 2;
+        var Y0 = canvas.height / 2;
+        var hourlyWeather = '@Html.Raw(ViewBag.Result)';
+        drawClock(canvas, X0, Y0, RADIUS);
+        DrawHourlyWeather(canvas, X0, Y0, RADIUS + 3, hourlyWeather);
+        addDegreeInHover(hourlyWeather);
     }
-
-    function drawArc() {
-
-        var canvas = document.getElementById('clock');
-        var ctx = canvas.getContext('2d');
-        ctx.beginPath();
-        ctx.lineWidth = 7;
-
-        var serialyzed = '@Html.Raw(ViewBag.Result)';
-
-        var dict =  JSON.parse(serialyzed);
-
-        for (var key in dict) {
-
-            if (0 <= parseInt(key, 10) <= 12) {
-
-                ctx.beginPath();
-
-                var color = 'rgb(255, ' + (255 - dict[key] * 255 / 30) + ', 0)';
-                ctx.strokeStyle = color;
-                var start = - Math.PI / 2 + parseInt(key, 10) * Math.PI / 6;
-                var end = - Math.PI / 2 + (parseInt(key, 10) + 1) * Math.PI / 6;
-                ctx.arc(200, 200, 183, start, end);
-
-                ctx.stroke();
-
-            }
-
-        }
-
-        ctx.closePath();
-    }
-
-    function addDegreeInHover() {
-
-        var serialyzed = '@Html.Raw(ViewBag.Result)';
-
-        var dict =  JSON.parse(serialyzed);
-
-        for (var key in dict) {
-
-            if (0 <= parseInt(key, 10) <= 12) {
-
-                document.getElementById(key).innerHTML = dict[key];
-
-            }
-
-        }
-    }
-
 </script>
 
 <body onload="initLocalClocks();">
